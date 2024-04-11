@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/layout.astro";
+const { id, title, image, description } = Astro.props;
+---
+
+<Layout>
+  <div id={id} class="w-full max-w-[375px] md:max-w-[334px]">
+    <div
+      class="w-full min-w-[215px] lg:w-40 h-56 md:h-60 lg:h-72 py-6 px-6 bg-white rounded-xl flex flex-col md:items-center"
+    >
+      <div class="flex items-center md:flex-col">
+        <div
+          style={{ backgroundImage: `url(${image})` }}
+          class="w-[100px] h-[100px] min-w-[100px] bg-gray rounded-full object-cover bg-center bg-cover"
+        >
+        </div>
+        <h3 class="text-lg font-semibold py-2 pb-2 pl-6 md:pl-0">
+          {title}
+        </h3>
+      </div>
+      <p class="text-xs lg:text-sm md:text-center text-text-gray py-6 md:py-0">
+        {description}
+      </p>
+    </div>
+  </div>
+</Layout>

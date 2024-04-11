@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/layout.astro";
+import CardAboutProduct from "./card/cardAboutProduct.astro";
+---
+
+<Layout>
+  <section class="py-32 bg-grey">
+    <div class="container mx-auto lg:px-32">
+      <div class="w-full px-8">
+        <h6 class="text-base font-bold text-center text-primary">Keunggulan</h6>
+        <h1 class="text-2xl md:text-3xl font-bold text-center py-1">
+          Nikmati <span class="text-primary">#Wifi</span> Fiber Ultra Cepat dan Unlimited
+        </h1>
+        <p class="text-center text-slate-600 py-2">
+          Kami provider internet dan wifi rumah yang dapat memahami kebutuhan
+          Anda. Kini bukan hanya internet yang cepat tapi juga dengan fitur yang
+          lengkap dan harga yang murah.
+        </p>
+
+        <div class="w-full flex flex-wrap gap-8 justify-center items-center py-5">
+          <CardAboutProduct
+            id="1"
+            title="100% Fiber Optic"
+            image="/fiberoptic.jpg"
+            description="apmcXdb menggunakan teknologi jaringan fiber optik sampai ke dalam rumah (FTTH)"
+          />
+          <CardAboutProduct
+            id="2"
+            title="Modem WIFI"
+            image="/modem.jpg"
+            description="apmcXdb memiliki modem wifi untuk koneksi internet yang stabil dan cepat."
+          />
+          <CardAboutProduct
+            id="3"
+            title="Tanpa Kuota"
+            image="/nokuota.jpg"
+            description="apmcXdb tanpa kuota, jangkauan internet yang luas dan cepat."
+          />
+          <CardAboutProduct
+            id="4"
+            title="WiFI Unlimited"
+            image="/unlimited.jpg"
+            description="Wi-Fi dual band pada Level tertentu agar koneksi internet kamu stabil."
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

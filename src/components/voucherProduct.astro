@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/layout.astro";
+import VoucherCard from "./card/voucherCard.astro";
+import MitraList from "./card/mitraList.tsx";
+---
+
+<Layout>
+  <div class="w-full py-10">
+    <div class="w-full mx-auto">
+      <div class="w-full px-8 relative">
+        <h4
+          id="paketmitravoucher"
+          class="text-xl md:text-2xl lg:text-3xl font-bold text-center text-dark py-6"
+        >
+          Paket Mitra Usaha <span class="text-primary">Voucher</span>
+        </h4>
+        <div class="w-full flex flex-wrap justify-center gap-16">
+          <VoucherCard
+            title="Paket Mitra Penjualan"
+            speed="1:1 2Mbps/1Voucher"
+            discount={200000}
+            harga={150000}
+            voucher="5 Voucher"
+            device="5 Devices"
+            penggunaan="- Semua Bisa -"
+            toChat="https://wa.me/6285224375422?text=Hallo,%20Saya%20datang%20dari%20website%20anda%20ingin%20membahas%20paket%20WiFi%20Mitra%20Penjualan%20Voucher%20dengan%20bandwidth%20RealTime%20Speed%202Mbps%20Rp.%20150.000"
+          />
+          <VoucherCard
+            title="Paket Mitra Exlusif"
+            speed="1:1 2Mbps/1Voucher"
+            discount={350000}
+            harga={300000}
+            voucher="10 Voucher"
+            device="10 Devices"
+            penggunaan="- Semua Bisa -"
+            toChat="https://wa.me/6285224375422?text=Hallo,%20Saya%20datang%20dari%20website%20anda%20ingin%20membahas%20paket%20WiFi%20Mitra%20Exlusif%20Voucher%20dengan%20bandwidth%20RealTime%20Speed%202Mbps%20Rp.%20300.000"
+          />
+        </div>
+        <div
+          style={{ backgroundImage: `url('/maskot.webp')` }}
+          class="w-80 h-96 lg:w-96 lg:h-[32rem] absolute top-0 left-0 bg-cover"
+        >
+        </div>
+        <!-- Keuntungan -->
+        <MitraList client:visible />
+      </div>
+    </div>
+  </div>
+</Layout>

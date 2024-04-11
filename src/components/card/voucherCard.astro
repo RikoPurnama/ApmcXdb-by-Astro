@@ -1,0 +1,73 @@
+---
+import Layout from "../../layouts/layout.astro";
+import { BiSignal4 } from "react-icons/bi";
+import { BsPhone } from "react-icons/bs";
+import { IoConstructOutline, IoTicketOutline } from "react-icons/io5";
+
+const { title, speed, discount, harga, fontSize, toChat, voucher, device, penggunaan } = Astro.props;
+---
+
+<Layout>
+  <div
+    class={`w-[320px] min-w-[270px] md:w-[19rem] h-[30rem] py-6 px-8 bg-white relative shadow-blueOutline border border-primary-transparent rounded-xl z-10`}
+  >
+    <h1 class="text-sm text-dark">{title}</h1>
+    <p class={`text-2xl font-semibold text-primary pb-2 ${fontSize}`}>
+      {speed}
+    </p>
+    <hr class="opacity-100 text-black" />
+    <p class="text-grey line-through py-2">
+      {
+        discount.toLocaleString("ID", {
+          style: "currency",
+          currency: "IDR",
+        })
+      }
+    </p>
+    <p class="text-base font-medium text-text-gray">
+      Rp
+      <span class="text-3xl md:text-4xl font-medium text-dark">
+        {harga.toLocaleString("ID")}
+      </span>
+      / Bulan
+    </p>
+    <div class="w-full py-4 md:py-5">
+      <p>Benefit:</p>
+      <ul class="flex flex-col gap-2 pt-2">
+        <li>
+          <p class="flex items-center gap-2">
+            <BiSignal4 className="text-primary" /> Internet Unlimited
+          </p>
+        </li>
+        <li>
+          <p class="flex items-center gap-2">
+            <IoTicketOutline className="text-primary" />
+            {voucher}
+          </p>
+        </li>
+        <li>
+          <p class="flex items-center gap-2">
+            <BsPhone className="text-primary" />
+            {device}
+          </p>
+        </li>
+        <li>
+          <p class="flex items-center gap-2">
+            <IoConstructOutline className="text-primary" /> Gratis Installasi
+          </p>
+        </li>
+      </ul>
+      <p class="text-base py-2 pt-2">Penggunaan :</p>
+      <div class="flex gap-2">
+        <p class="text-sm text-slate-500">{penggunaan}</p>
+      </div>
+    </div>
+    <a
+      class="inline-block absolute bottom-6 right-8 left-8 text-center py-3 px-6 bg-primary text-white rounded-xl mt-5"
+      href={toChat}
+      target="_blank"
+    >
+      Langganan Sekarang
+    </a>
+  </div>
+</Layout>

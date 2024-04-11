@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/layout.astro";
+import MitraVoc from "./carousel/mitraVoc";
+---
+
+<Layout>
+  <section class="py-16">
+    <div class="container mx-auto lg:px-32">
+      <div class="w-full">
+        <div class="w-full px-4 pb-8">
+          <h3 class="text-2xl text-center md:text-3xl font-semibold">
+            apmcXdb<span class="text-primary">Net</span> Telah Memiliki 200+
+            clients untuk saat ini
+          </h3>
+          <h4 class="text-base text-center text-slate-600">
+            Berikut adalah beberapa mitra Voucher dari apmcXdb<span
+              class="text-primary">Net</span
+            >
+          </h4>
+        </div>
+        <MitraVoc client:visible />
+      </div>
+    </div>
+  </section>
+</Layout>

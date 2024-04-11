@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/layout.astro"
+import Intro from "../components/intro.tsx"
+import Banner from "../components/banner.tsx"
+import AboutProduct from "../components/aboutProduct.astro"
+import Product from "../components/productPrices"
+import Nav from "../components/nav"
+import VoucherProduct from "../components/voucherProduct.astro"
+import MitraVoucher from "../components/mitraVoucher.astro"
+import Location from "../components/locationAndService.tsx"
+import Footer from "../components/footer.astro"
+---
+
+<Layout>
+	<Nav client:load />
+	<Intro client:visible />
+	<Banner client:visible />
+	<AboutProduct />
+	<Product client:visible />
+	<VoucherProduct  />
+	<MitraVoucher />
+	<Location client:only />
+	<Footer />
+</Layout>
