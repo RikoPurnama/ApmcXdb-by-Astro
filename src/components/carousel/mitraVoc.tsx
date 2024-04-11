@@ -1,5 +1,6 @@
 import { SwiperSlide, Swiper } from "swiper/react";
 import { imagesMitra } from "../../util/dataMitraVoucher";
+import MitraImages from "../mitraImages"
 
 const MitraVoc = () => {
 
@@ -26,12 +27,7 @@ const MitraVoc = () => {
         >
           {imagesMitra.map((item) => (
             <SwiperSlide className="py-4 px-4" key={item.id}>
-              <div
-                key={item.id}
-                className="w-full max-w-xl"
-              >
-                <img src={item.image} alt={item.title} className="rounded-xl shadow-lg" />
-              </div>
+              <MitraImages id={item.id} title={item.title} image={item.image} />
             </SwiperSlide>
           ))}
           <h2 className="text-dark px-4">Scroll ke kanan {'>>>>'}</h2>

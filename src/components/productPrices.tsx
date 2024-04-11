@@ -37,7 +37,7 @@ function Card({ id }: { id: number }) {
               {item.speed}
             </p>
             <hr className="opacity-100 text-black" />
-            <p className="text-grey line-through py-2">
+            <p className="text-slate-400 line-through py-2">
               {item.discount.toLocaleString("ID", {
                 style: "currency",
                 currency: "IDR",

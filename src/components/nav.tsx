@@ -14,11 +14,11 @@ const Nav = () => {
 
   return (
     <header
-      className={`w-full h-16 md:h-20 fixed bg-white shadow-[0_0_2px_0_rgb(0,0,0,0.2)] z-50`}
+      className={`w-full h-16 md:h-20 fixed bg-white shadow-[0_0_2px_0_rgb(0,0,0,0.2)] z-40`}
     >
       <div className=" h-full container mx-auto px-8 lg:px-32 flex justify-between items-center">
         <a href="/" className="text-xl lg:text-2xl font-bold text-black">
-          APMC<span className="text-primary">Net</span>
+          apmcXdb<span className="text-primary">Net</span>
         </a>
 
         {matches && (
@@ -41,7 +41,7 @@ const Nav = () => {
           <button
             onClick={() => setToggle((prevToggle) => !prevToggle)}
             className="space-y-1.5 z-50"
-            name="humburger menu"
+            name="Humburger Menu"
           >
             <motion.span animate={{rotateZ: toggle ? 45 : 0, y: toggle ? 8 : 0}} className="block w-8 h-0.5 bg-black rounded"></motion.span>
             <motion.span animate={{width: toggle ? 0 : 24}} className="block w-6 h-0.5 bg-black rounded"> </motion.span>
@@ -66,7 +66,7 @@ const Nav = () => {
         )}
 
         {matches && (
-            <a className="py-2 px-4 bg-primary text-white rounded-md" href="https://wa.me/6289677600427" target="_blank">Contact</a>
+            <a className="py-2 px-4 bg-primary text-white rounded-md" href="https://wa.me/6289677600427" target="_blank">Hubungi Kami</a>
         )}
       </div>
     </header>

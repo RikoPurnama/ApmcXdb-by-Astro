@@ -20,10 +20,6 @@ const Intro = () => {
                 Anda menghadirkan jaringan WiFi berkualitas tinggi untuk
                 memenuhi kebutuhan akses internet Anda. 
                 <br />
-                {/* Nikmati internet cepat
-                jangkauan luas mulai dari 100 ribuan saja perbulan. Yuk pilih
-                apmcXdb untuk memperlancar kegiatan mu dirumah bersama
-                apmcXdb.net */}
               </p>
               <div className="flex gap-4 pb-6">
                 <a

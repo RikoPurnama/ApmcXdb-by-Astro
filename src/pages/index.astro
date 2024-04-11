@@ -11,7 +11,7 @@ import Location from "../components/locationAndService.tsx"
 import Footer from "../components/footer.astro"
 ---
 
-<Layout>
+<Layout Title="Homepage">
 	<Nav client:load />
 	<Intro client:visible />
 	<Banner client:visible />
@@ -19,6 +19,6 @@ import Footer from "../components/footer.astro"
 	<Product client:visible />
 	<VoucherProduct  />
 	<MitraVoucher />
-	<Location client:only />
+	<Location />
 	<Footer />
 </Layout>
