@@ -1,4 +1,4 @@
-import { Price } from "../util/dataProduct";
+import { Price } from "../../util/dataProduct";
 import { BiSignal4 } from "react-icons/bi";
 import { BsPhone } from "react-icons/bs";
 import { IoConstructOutline } from "react-icons/io5";

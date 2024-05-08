@@ -1,5 +1,5 @@
 import { SwiperSlide, Swiper } from "swiper/react";
-import { imagesMitra } from "../../util/dataMitraVoucher";
+import { imagesMitra } from "../../../util/dataMitraVoucher";
 import MitraImages from "../mitraImages"
 
 const MitraVoc = () => {

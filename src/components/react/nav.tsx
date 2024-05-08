@@ -1,4 +1,4 @@
-import { useMediaQuery } from "../util/useMediaQuery";
+import { useMediaQuery } from "../../util/useMediaQuery";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -57,7 +57,7 @@ const Nav = () => {
           <button
             onClick={() => setToggle((prevToggle) => !prevToggle)}
             className="space-y-1.5 z-50"
-            name="Humburger Menu"
+            name="HumburgerMenu"
           >
             <motion.span
               animate={{ rotateZ: toggle ? 45 : 0, y: toggle ? 8 : 0 }}

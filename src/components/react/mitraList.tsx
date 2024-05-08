@@ -17,7 +17,7 @@ const MitraList = () => {
       </p>
       {openMitra && (
         <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} className="px-8">
-          <ol className="flex flex-col pt-2 list-decimal">
+          <ol className="flex flex-col pt-2 list-decimal list-outside">
             <li>Harga Voucher yang dijual</li>
             <li>Tidak repot ganti password setiap hari</li>
             <li>Jangkauan luas selagi ada sinyal</li>
