@@ -2,7 +2,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const About = () => {
   const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], [0, 500]);
   const minX = useTransform(scrollYProgress, [0, 1], [0, -500]);
   return (
     <section className="relative overflow-hidden">
