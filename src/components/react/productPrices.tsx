@@ -77,7 +77,7 @@ function Card({ id }: { id: number }) {
               </div>
             </div>
               <a
-                className="inline-block absolute bottom-6 right-8 left-8 text-center py-3 px-6 bg-primary text-white rounded-xl mt-5"
+                className="inline-block absolute bottom-6 right-8 left-8 text-center py-3 px-6 bg-primary text-white hover:shadow-[0_0_40px_-15px_rgba(6,55,164,0.4)] transition-shadow duration-300 ease-in-out rounded-xl mt-5"
                 href={item.toChat}
                 target="_blank"
               >

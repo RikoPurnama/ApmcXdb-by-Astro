@@ -22,13 +22,13 @@ const Intro = () => {
               <div className="flex gap-4 pb-6">
                 <a
                   href="/more"
-                  className="bg-primary text-white px-4 py-2 rounded-md"
+                  className="bg-primary text-white px-4 py-2 hover:shadow-[0_0_40px_-15px_rgba(6,55,164,1)] transition-shadow duration-300 ease-in-out rounded-md"
                 >
                   Selengkapnya
                 </a>
                 <a
                   href="#Product"
-                  className="text-primary border border-primary px-4 py-2 rounded-md"
+                  className="text-primary border border-primary bg-white px-4 py-2 shadow-[0_0_40px_-15px_rgba(6,55,164,1)] hover:shadow-none transition-shadow duration-300 ease-in-out  rounded-md"
                 >
                   Lihat Layanan
                 </a>
