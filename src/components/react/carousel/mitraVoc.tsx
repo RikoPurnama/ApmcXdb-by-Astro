@@ -1,13 +1,13 @@
 import { SwiperSlide, Swiper } from "swiper/react";
 import { imagesMitra } from "../../../util/dataMitraVoucher";
-import MitraImages from "../mitraImages"
+import MitraImages from "../mitraImages";
 
 const MitraVoc = () => {
-
-    return (
-        <div className="w-full px-4 ">
+  return (
+    <div className="w-full px-4 ">
       <div className="w-full">
         <Swiper
+          autoplay={{ delay: 1000 }}
           spaceBetween={-10}
           slidesPerView={1}
           breakpoints={{
@@ -30,11 +30,11 @@ const MitraVoc = () => {
               <MitraImages id={item.id} title={item.title} image={item.image} />
             </SwiperSlide>
           ))}
-          <h2 className="text-dark px-4">Scroll ke kanan {'>>>>'}</h2>
+          <h2 className="text-dark px-4">Scroll ke Kanan {">>>>"}</h2>
         </Swiper>
       </div>
     </div>
-    )
-}
+  );
+};
 
 export default MitraVoc;

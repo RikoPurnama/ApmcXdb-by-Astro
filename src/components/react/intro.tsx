@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 
 const Intro = () => {
+
+  const leftSection = document.getElementById("left-section");
   return (
     <section className="w-full h-screen md:h-[66vh] lg:h-[93vh] py-32 md:flex md:items-center">
       <div className="container mx-auto lg:px-24">
         <div className="w-full flex flex-wrap">
           <div className="w-full md:w-[60%] px-8">
-            <div>
+            <div className="md:mt-10 lg:mt-0">
               <h6 className="text-primary font-bold pb-1">
                 #PakaiAPMC Pasti Cepat
               </h6>
