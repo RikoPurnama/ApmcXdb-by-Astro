@@ -19,6 +19,6 @@ import Footer from "../components/footer.astro"
 	<Product client:visible />
 	<VoucherProduct  />
 	<MitraVoucher />
-	<Location client:load />
+	<Location client:only="react" />
 	<Footer />
 </Layout>
