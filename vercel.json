@@ -1,8 +1,7 @@
 {
-    "functions": {
-      "api/*": {
-        "runtime": "nodejs18.x"
-      }
+  "functions": {
+    "_render": {
+      "runtime": "nodejs18.x"
     }
   }
-  
+}

@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
+
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import dotenv from "dotenv"
@@ -10,7 +11,7 @@ dotenv.config();
 export default defineConfig({
   output: "server",
   adapter: vercel({
-    includeFiles: ['.vercel/output/**/*'], // Pastikan file server diikutkan
+    includeFiles: ['.vercel/output/functions/_render.func/**'], // Pastikan file server diikutkan
   }),
   vite: {
     define: {
