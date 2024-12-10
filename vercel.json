@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": ".vercel/output/_functions/entry.mjs",
+      "src": ".vercel/output/functions/_render.func/dist/server/entry.mjs",
       "use": "@vercel/node"
     }
   ],
