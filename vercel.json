@@ -1,7 +1,15 @@
 {
-  "functions": {
-    "_render": {
-      "runtime": "nodejs18.x"
+  "version": 3,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/_render"
+    }
+  ]
 }
