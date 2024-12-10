@@ -10,9 +10,7 @@ dotenv.config();
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: vercel({
-    includeFiles: ['.vercel/output/functions/_render.func/**'], // Pastikan file server diikutkan
-  }),
+  adapter: vercel(),
   vite: {
     define: {
       'process.env.NODE_ENV': JSON.stringify('production'),
