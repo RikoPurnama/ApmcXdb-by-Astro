@@ -11,8 +11,5 @@
       "src": "/(.*)",
       "dest": "/_render"
     }
-  ],
-  "devServer": {
-    "framework": "astro"
-  }
+  ]
 }
