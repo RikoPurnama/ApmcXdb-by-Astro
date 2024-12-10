@@ -1,7 +1,7 @@
 /* empty css                                     */
-import { c as createComponent, r as renderTemplate, f as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_jPH76rp6.mjs';
+import { c as createComponent, r as renderTemplate, f as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_Cn0lcgAD.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/layout_Bg1sMzxM.mjs';
+import { $ as $$Layout } from '../chunks/layout_BKTxJgp5.mjs';
 import { GoArrowLeft } from 'react-icons/go';
 export { renderers } from '../renderers.mjs';
 

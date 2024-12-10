@@ -8,12 +8,7 @@ dotenv.config();
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: 'server',
   adapter: vercel(),
-  vite: {
-    define: {
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    },
-  },
   integrations: [tailwind(), react()],
 });

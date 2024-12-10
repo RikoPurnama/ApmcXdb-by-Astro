@@ -11,5 +11,8 @@
       "src": "/(.*)",
       "dest": "/_render"
     }
-  ]
+  ],
+  "engines": {
+    "node": "18.x"
+  }
 }
