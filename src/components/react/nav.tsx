@@ -1,22 +1,52 @@
 import { useMediaQuery } from "../../util/useMediaQuery";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { supabase } from "../../config/supabaseClient";
 
 const Nav = () => {
   const matches = useMediaQuery("(min-width: 1280px)");
   const [toggle, setToggle] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  
 
   useEffect(() => {
-    window.addEventListener("click", (e) => {
-      //   if (e.target != )
+    // Mengecek status sesi pengguna
+    const checkUser = async () => {
+      const { data, error } = await supabase.auth.getSession();
+      if (error || !data.session) {
+        setUser(null); // Tidak ada sesi
+      } else {
+        setUser(data.session.user); // Ada sesi, simpan data pengguna
+      }
+    };
+
+    checkUser();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange(() => {
+      checkUser();
     });
-  });
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut({ scope: "local" });
+    await supabase.auth.signOut();
+    if (error) {
+      console.error("Gagal logout:", error.message);
+    } else {
+      localStorage.clear();
+      window.location.href = "/";
+    }
+  };
 
   return (
     <header
       className={`w-full h-16 md:h-20 fixed bg-white shadow-[0_0_2px_0_rgb(0,0,0,0.2)] z-40`}
     >
-      <div className=" h-full container mx-auto px-8 lg:px-32 flex justify-between items-center">
+      <div className="h-full container mx-auto px-8 lg:px-32 flex justify-between items-center">
         <a href="/" className="text-xl lg:text-2xl font-bold text-black">
           apmcXdb<span className="text-primary">Net</span>
         </a>
@@ -107,19 +137,36 @@ const Nav = () => {
                     Cakupan Wilayah
                   </a>
                 </li>
+                {user && (
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full py-1 border border-dark rounded-md"
+                    >
+                      Log out
+                    </button>
+                  </li>
+                )}
               </ul>
             </motion.div>
           )}
         </AnimatePresence>
 
         {matches && (
-          <a
-            className="py-2 px-4 bg-primary text-white rounded-md"
-            href="https://wa.me/6289677600427"
-            target="_blank"
-          >
-            Hubungi Kami
-          </a>
+          <div className="flex items-center gap-8">
+            <a
+              className="py-2 px-4 bg-primary text-white rounded-md"
+              href="https://wa.me/6289677600427"
+              target="_blank"
+            >
+              Hubungi Kami
+            </a>
+            {user && (
+              <button onClick={handleLogout} className="font-semibold py-2 px-4 border border-dark rounded-md">
+                Log out
+              </button>
+            )}
+          </div>
         )}
       </div>
     </header>

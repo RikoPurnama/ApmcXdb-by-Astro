@@ -20,15 +20,19 @@ function Card({ id }: { id: number }) {
           spaceBetween: 20,
         },
         1024: {
-          slidesPerView: 3,
+          slidesPerView: 2,
           spaceBetween: 50,
+        },
+        1280: {
+          slidesPerView: 3,
+          spaceBetween: 70,
         },
       }}
     >
       {Price.map((item) => (
-        <SwiperSlide className="py-9 px-5" key={item.id}>
+        <SwiperSlide className="py-9 px-7" key={item.id}>
           <div
-            className={`w-[320px] min-w-[270px] md:w-[19rem] h-[30rem] py-6 px-8 bg-white relative rounded-xl ${item.border} rounded-xl `}
+            className={`w-full max-w-[320px] min-w-[270px] md:w-[19rem] h-[30rem] py-6 px-8 bg-white relative rounded-xl ${item.border} rounded-xl `}
           >
             <h1 className="text-sm text-dark">{item.title}</h1>
             <p
@@ -76,17 +80,17 @@ function Card({ id }: { id: number }) {
                 <p className="text-sm text-slate-500">{item.penggunaan}</p>
               </div>
             </div>
-              <a
-                className="inline-block absolute bottom-6 right-8 left-8 text-center py-3 px-6 bg-primary text-white hover:shadow-[0_0_40px_-15px_rgba(6,55,164,0.4)] transition-shadow duration-300 ease-in-out rounded-xl mt-5"
-                href={item.toChat}
-                target="_blank"
-              >
-                Langganan Sekarang
-              </a>
+            <a
+              className="inline-block absolute bottom-6 right-8 left-8 text-center py-3 px-6 bg-primary text-white hover:shadow-[0_0_40px_-15px_rgba(6,55,164,0.4)] transition-shadow duration-300 ease-in-out rounded-xl mt-5"
+              href={item.toChat}
+              target="_blank"
+            >
+              Langganan Sekarang
+            </a>
           </div>
         </SwiperSlide>
       ))}
-      <h2 className="text-primary px-5">Scroll Ke Kanan {">>>>"}</h2>
+      <h2 className="text-primary px-7">Scroll Ke Kanan {">>>>"}</h2>
     </Swiper>
   );
 }
@@ -95,7 +99,7 @@ const Product = () => {
   return (
     <section id="Product" className="pt-32">
       <div className="container mx-auto lg:px-32">
-        <div className="w-full px-4">
+        <div className="w-full">
           <h6 className="text-base font-bold text-center text-primary">
             Harga dan Layanan
           </h6>
@@ -108,12 +112,11 @@ const Product = () => {
             dari APMC Net.
           </p>
 
-           <div className="w-[26.7rem] md:w-[29rem] lg:w-[34rem] h-[34.5rem] absolute -left-11 bg-primary rounded-3xl"></div>
+          <div className="w-[26rem] sm:w-[28rem] md:w-[27rem] lg:w-[34rem] 2xl:w-[34rem] h-[34.5rem] absolute -left-11 bg-primary rounded-3xl"></div>
 
-          {[0].map((price) => (
-            <Card id={price} />
+          {[0].map((price: any) => (
+            <Card id={price} key={price} />
           ))}
-          
         </div>
       </div>
     </section>

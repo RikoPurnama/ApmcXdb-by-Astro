@@ -16,15 +16,14 @@ export default {
         outline: "0 0 25px 0 rgba(226, 229, 231, 0.35)",
         blueOutline: "0 0 25px 0 rgba(6, 55, 164, 0.1)",
       },
-
-      keyframes: {
-        scroll: {
-          "0%": { transform: "translateX(-100%)" },
-          "100%": { transform: "translateX(100%)" },
-        },
-      },
       animation: {
-        scroll: "scroll 15s linear infinite",
+        "loop-scroll": "loop-scroll 15s linear infinite",
+      },
+      keyframes: {
+        "loop-scroll": {
+          from: {transform: "translateX(-150%)" },
+          to: { transform: "translateX(100%)" },
+        },
       },
     },
   },
