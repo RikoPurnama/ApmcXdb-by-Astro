@@ -1,7 +1,6 @@
 {
+  "outputDirectory": "dist",
   "functions": {
-    "dist/server/*": {
-      "runtime": "nodejs18.x"
-    }
+    "*": { "runtime": "nodejs18.x" }
   }
 }

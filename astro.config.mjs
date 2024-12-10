@@ -6,13 +6,10 @@ import dotenv from "dotenv"
 
 dotenv.config();
 
-
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: vercel({
-    includeFiles: ['dist/server/**/*'], // Pastikan file server diikutkan
-  }),
+  adapter: vercel(),
   vite: {
     define: {
       'process.env': process.env
