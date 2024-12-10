@@ -9,11 +9,13 @@ dotenv.config();
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: vercel(),
+  adapter: vercel({
+    includeFiles: ['.vercel/output/**/*'], // Pastikan file server diikutkan
+  }),
   vite: {
     define: {
-      'process.env': process.env
-    }
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    },
   },
   integrations: [tailwind(), react()],
 });
