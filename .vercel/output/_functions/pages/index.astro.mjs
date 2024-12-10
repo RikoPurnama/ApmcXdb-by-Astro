@@ -975,6 +975,7 @@ Copyright © 2024 ApmcXdb<span class="text-primary">Net</span>. All rights reser
 </p> </div> </div> </div> </section>`;
 }, "E:/projects/Astrojs projects/ApmcProjects/src/components/footer.astro", void 0);
 
+const prerender = false;
 const $$Index = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "Title": "Homepage" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Nav", Nav, { "client:load": true, "client:component-hydration": "load", "client:component-path": "E:/projects/Astrojs projects/ApmcProjects/src/components/react/nav", "client:component-export": "default" })} ${renderComponent($$result2, "Intro", Intro, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "E:/projects/Astrojs projects/ApmcProjects/src/components/react/intro", "client:component-export": "default" })} ${renderComponent($$result2, "Banner", About, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "E:/projects/Astrojs projects/ApmcProjects/src/components/react/banner", "client:component-export": "default" })} ${renderComponent($$result2, "AboutProduct", $$AboutProduct, {})} ${renderComponent($$result2, "Product", Product, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": "E:/projects/Astrojs projects/ApmcProjects/src/components/react/productPrices", "client:component-export": "default" })} ${renderComponent($$result2, "VoucherProduct", $$VoucherProduct, {})} ${renderComponent($$result2, "MitraVoucher", mitraVoucher, { "client:load": true, "client:component-hydration": "load", "client:component-path": "E:/projects/Astrojs projects/ApmcProjects/src/components/mitraVoucher", "client:component-export": "default" })} ${renderComponent($$result2, "Location", LocationAndService, { "client:load": true, "client:component-hydration": "load", "client:component-path": "E:/projects/Astrojs projects/ApmcProjects/src/components/react/locationAndService", "client:component-export": "default" })} ${renderComponent($$result2, "Footer", $$Footer, {})} ` })}`;
 }, "E:/projects/Astrojs projects/ApmcProjects/src/pages/index.astro", void 0);
@@ -986,6 +987,7 @@ const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   default: $$Index,
   file: $$file,
+  prerender,
   url: $$url
 }, Symbol.toStringTag, { value: 'Module' }));
 

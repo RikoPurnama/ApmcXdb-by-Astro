@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
-import react from "@astrojs/react";
 import vercel from "@astrojs/vercel/serverless";
+import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import dotenv from "dotenv"
 
@@ -9,12 +9,14 @@ dotenv.config();
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react()],
-  output: 'server',
+  output: "server",
+  adapter: vercel({
+    includeFiles: ['dist/server/**/*'], // Pastikan file server diikutkan
+  }),
   vite: {
     define: {
       'process.env': process.env
     }
   },
-  adapter: vercel()
+  integrations: [tailwind(), react()],
 });
