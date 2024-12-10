@@ -1,1 +1,0 @@
-import{s as e}from"./supabaseClient.IMSIOtep.js";const o=async()=>{const{data:r,error:a}=await e.from("Promotion").select("*");return a?(console.error("Gagal mengambil data:",a.message),[]):r||[]},s=async()=>{const{data:r,error:a}=await e.from("Total_Clients").select("*");return a?(console.error("Gagal mengambil data:",a.message),[]):r||[]};export{o as a,s as f};

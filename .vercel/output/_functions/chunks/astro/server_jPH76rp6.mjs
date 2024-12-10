@@ -4,7 +4,7 @@ import { escape } from 'html-escaper';
 import { decodeBase64, encodeHexUpperCase, encodeBase64, decodeHex } from '@oslojs/encoding';
 import 'cssesc';
 
-const ASTRO_VERSION = "5.0.3";
+const ASTRO_VERSION = "5.0.4";
 const REROUTE_DIRECTIVE_HEADER = "X-Astro-Reroute";
 const REWRITE_DIRECTIVE_HEADER_KEY = "X-Astro-Rewrite";
 const REWRITE_DIRECTIVE_HEADER_VALUE = "yes";
@@ -13,7 +13,6 @@ const ROUTE_TYPE_HEADER = "X-Astro-Route-Type";
 const DEFAULT_404_COMPONENT = "astro-default-404.astro";
 const REROUTABLE_STATUS_CODES = [404, 500];
 const clientAddressSymbol = Symbol.for("astro.clientAddress");
-const clientLocalsSymbol = Symbol.for("astro.locals");
 const originPathnameSymbol = Symbol.for("astro.originPathname");
 const responseSentSymbol = Symbol.for("astro.responseSent");
 
@@ -2384,4 +2383,4 @@ function spreadAttributes(values = {}, _name, { class: scopedClassName } = {}) {
   return markHTMLString(output);
 }
 
-export { AstroResponseHeadersReassigned as $, AstroError as A, InvalidGetStaticPathsEntry as B, GetStaticPathsExpectedParams as C, DEFAULT_404_COMPONENT as D, ExpectedImage as E, FailedToFetchRemoteImageDimensions as F, GetStaticPathsRequired as G, GetStaticPathsInvalidRouteParam as H, IncompatibleDescriptorOptions as I, decryptString as J, createSlotValueFromString as K, LocalImageUsedWrongly as L, MissingSharp as M, NOOP_MIDDLEWARE_HEADER as N, isAstroComponentFactory as O, PageNumberParamNotFound as P, NoMatchingStaticPathFound as Q, ROUTE_TYPE_HEADER as R, PrerenderDynamicEndpointPathCollide as S, ReservedSlotName as T, UnsupportedImageFormat as U, renderSlotToString as V, renderJSX as W, chunkToString as X, isRenderInstruction as Y, ForbiddenRewrite as Z, LocalsReassigned as _, addAttribute as a, PrerenderClientAddressNotAvailable as a0, clientAddressSymbol as a1, ClientAddressNotAvailable as a2, StaticClientAddressNotAvailable as a3, ASTRO_VERSION as a4, responseSentSymbol as a5, renderPage as a6, REWRITE_DIRECTIVE_HEADER_KEY as a7, REWRITE_DIRECTIVE_HEADER_VALUE as a8, renderEndpoint as a9, LocalsNotAnObject as aa, clientLocalsSymbol as ab, REROUTABLE_STATUS_CODES as ac, renderHead as b, createComponent as c, renderSlot as d, createAstro as e, renderComponent as f, decodeKey as g, MissingImageDimension as h, UnsupportedImageConversion as i, NoImageMetadata as j, ExpectedImageOptions as k, ExpectedNotESMImage as l, maybeRenderHead as m, InvalidImageService as n, ImageMissingAlt as o, REROUTE_DIRECTIVE_HEADER as p, i18nNoLocaleFoundInPath as q, renderTemplate as r, spreadAttributes as s, toStyleString as t, ResponseSentError as u, MiddlewareNoDataOrNextCalled as v, MiddlewareNotAResponse as w, RewriteWithBodyUsed as x, originPathnameSymbol as y, InvalidGetStaticPathsReturn as z };
+export { AstroResponseHeadersReassigned as $, AstroError as A, InvalidGetStaticPathsEntry as B, GetStaticPathsExpectedParams as C, DEFAULT_404_COMPONENT as D, ExpectedImage as E, FailedToFetchRemoteImageDimensions as F, GetStaticPathsRequired as G, GetStaticPathsInvalidRouteParam as H, IncompatibleDescriptorOptions as I, decryptString as J, createSlotValueFromString as K, LocalImageUsedWrongly as L, MissingSharp as M, NOOP_MIDDLEWARE_HEADER as N, isAstroComponentFactory as O, PageNumberParamNotFound as P, NoMatchingStaticPathFound as Q, ROUTE_TYPE_HEADER as R, PrerenderDynamicEndpointPathCollide as S, ReservedSlotName as T, UnsupportedImageFormat as U, renderSlotToString as V, renderJSX as W, chunkToString as X, isRenderInstruction as Y, ForbiddenRewrite as Z, LocalsReassigned as _, addAttribute as a, PrerenderClientAddressNotAvailable as a0, clientAddressSymbol as a1, ClientAddressNotAvailable as a2, StaticClientAddressNotAvailable as a3, ASTRO_VERSION as a4, responseSentSymbol as a5, renderPage as a6, REWRITE_DIRECTIVE_HEADER_KEY as a7, REWRITE_DIRECTIVE_HEADER_VALUE as a8, renderEndpoint as a9, LocalsNotAnObject as aa, REROUTABLE_STATUS_CODES as ab, renderHead as b, createComponent as c, renderSlot as d, createAstro as e, renderComponent as f, decodeKey as g, MissingImageDimension as h, UnsupportedImageConversion as i, NoImageMetadata as j, ExpectedImageOptions as k, ExpectedNotESMImage as l, maybeRenderHead as m, InvalidImageService as n, ImageMissingAlt as o, REROUTE_DIRECTIVE_HEADER as p, i18nNoLocaleFoundInPath as q, renderTemplate as r, spreadAttributes as s, toStyleString as t, ResponseSentError as u, MiddlewareNoDataOrNextCalled as v, MiddlewareNotAResponse as w, RewriteWithBodyUsed as x, originPathnameSymbol as y, InvalidGetStaticPathsReturn as z };
