@@ -5,7 +5,6 @@ import { $ as $$Layout } from '../chunks/layout_BKTxJgp5.mjs';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import '../chunks/supabaseClient_DSiHPD-m.mjs';
 import 'clsx';
 import { BiSignal4 } from 'react-icons/bi';
 import { BsPhone } from 'react-icons/bs';

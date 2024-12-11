@@ -5,7 +5,7 @@ import { IoConstructOutline } from "react-icons/io5";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-function Card({ id }: { id: number }) {
+function Card({ id }: any) {
   return (
     <Swiper
       spaceBetween={-10}
