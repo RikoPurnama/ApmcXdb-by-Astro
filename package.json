@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "postbuild": "mv .vercel/output/functions/_render.func/dist/server/entry.mjs .vercel/output/functions/_render.func/",
     "preview": "astro preview",
     "astro": "astro"
   },
