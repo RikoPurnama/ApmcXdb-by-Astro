@@ -1,5 +1,4 @@
-import React, { useEffect, useState, type FormEvent } from "react";
-import { supabase } from "../../config/supabaseClient";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm: React.FC = () => {

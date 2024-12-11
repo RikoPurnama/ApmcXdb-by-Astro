@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/layout.astro"
+import Intro from "../components/react/intro"
+import Banner from "../components/react/banner"
+import AboutProduct from "../components/aboutProduct.astro"
+import Product from "../components/react/productPrices"
+import Nav from "../components/react/nav"
+import VoucherProduct from "../components/voucherProduct.astro"
+import MitraVoucher from "../components/mitraVoucher"
+import Location from "../components/react/locationAndService"
+import Footer from "../components/footer.astro"
+---
+
+<Layout Title="Homepage">
+	<Nav client:only="react" />
+	<Intro client:visible />
+	<Banner client:visible />
+	<AboutProduct />
+	<Product client:visible />
+	<VoucherProduct  />
+	<MitraVoucher client:load />
+	<Location client:load />
+	<Footer />
+</Layout>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { supabase } from "../../config/supabaseClient";
 
 const AddPromotion: React.FC = () => {
   const [title, setTitle] = useState("");

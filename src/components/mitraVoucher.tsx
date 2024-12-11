@@ -1,4 +1,3 @@
-import { supabase } from "../config/supabaseClient";
 import React, { useEffect, useState } from "react";
 
 import MitraVoc from "./react/carousel/mitraVoc";
