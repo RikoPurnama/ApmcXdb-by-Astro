@@ -1,1 +1,0 @@
-import{default as f}from"./app.D0qXK_Lo.js";import"./jsx-runtime.CDeAccHH.js";import"./index.D2MAbzvX.js";import"./index.AGWyUyCC.js";import"./index.Cb2GqDXq.js";import"./supabaseClient.CAFQAGi9.js";export{f as default};

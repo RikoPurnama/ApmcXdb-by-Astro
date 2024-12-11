@@ -50,7 +50,6 @@ const LoginForm: React.FC = () => {
       >
         <h1 className="text-xl lg:text-2xl font-bold text-center mb-7">
           Login
-          rikopurnama9051@gmail.com
         </h1>
         <label>
           Email:
