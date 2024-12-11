@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "framework": "astro",
   "builds": [
     {
       "src": "dist/server/entry.mjs",
@@ -8,8 +9,8 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/_render"
+      "src": "/.*",
+      "dest": "/"
     }
   ]
 }
