@@ -1,16 +1,10 @@
 {
   "version": 2,
   "framework": "astro",
-  "builds": [
-    {
-      "src": "dist/server/entry.mjs",
-      "use": "@vercel/node"
+  "functions": {
+    "_render.func": {
+      "runtime": "nodejs18.x",
+      "includeFiles": ".vercel/output/functions/_render.func/dist/server/**"
     }
-  ],
-  "routes": [
-    {
-      "src": "/.*",
-      "dest": "/"
-    }
-  ]
+  }
 }
