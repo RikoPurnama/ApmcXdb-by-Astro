@@ -1,44 +1,47 @@
 import { useMediaQuery } from "../../util/useMediaQuery";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { supabase } from "../../config/supabaseClient";
 
 const Nav = () => {
   const matches = useMediaQuery("(min-width: 1280px)");
   const [toggle, setToggle] = useState(false);
-  const [user, setUser] = useState<any>(null);
-  
+  const [user, setUser] = useState<null | any>(null);
 
   useEffect(() => {
-    // Mengecek status sesi pengguna
-    const checkUser = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) {
-        setUser(null); // Tidak ada sesi
-      } else {
-        setUser(data.session.user); // Ada sesi, simpan data pengguna
+    const checkSession = async () => {
+      try {
+        const response = await fetch("/api/checksession");
+        if (!response.ok) {
+          throw new Error("Session invalid");
+        }
+
+        const data = await response.json();
+        setUser(data.user);
+      } catch (err) {
+        console.error("Failed to fetch user:", err);
+      setUser(null); // Pastikan user null jika gagal
       }
     };
 
-    checkUser();
-
-    const { data: authListener } = supabase.auth.onAuthStateChange(() => {
-      checkUser();
-    });
-
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
+    checkSession();
   }, []);
 
   const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut({ scope: "local" });
-    await supabase.auth.signOut();
-    if (error) {
-      console.error("Gagal logout:", error.message);
-    } else {
+    try {
+      const response = await fetch("/api/logout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to log out");
+      }
+
+      setUser(null);
       localStorage.clear();
       window.location.href = "/";
+    } catch (error) {
+      console.error("Logout error:", error);
     }
   };
 

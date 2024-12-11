@@ -2,7 +2,6 @@ import { supabase } from "../config/supabaseClient";
 import React, { useEffect, useState } from "react";
 
 import MitraVoc from "./react/carousel/mitraVoc";
-import { fetchClients } from "../util/api/apiServices";
 
 const mitraVoucher = () => {
   const [totalClients, setTotalClients] = useState<number | null>(null);
@@ -15,26 +14,27 @@ const mitraVoucher = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Validasi input
     if (totalClients === null || totalClients <= 0) {
       setMessage("Masukkan jumlah klien yang valid!");
       return;
     }
 
     try {
-      // Update data ke Supabase
-      const { data, error } = await supabase
-        .from("Total_Clients")
-        .update({ total: totalClients }) // Kolom `total` disesuaikan dengan nama kolom di database
-        .eq("id", 1)
-        .select();
+      const response = await fetch("/api/updateclients", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ totalClients }),
+      });
 
-      if (error) {
-        setMessage("Gagal memperbarui jumlah klien!");
-      } else {
+      const data = await response.json();
+      if (response.ok) {
         setMessage("Jumlah klien berhasil diperbarui!");
         setToggleUpdate(!toggleUpdate);
         fetchClientData();
+      } else {
+        setMessage(data.message || "Gagal memperbarui jumlah klien!");
       }
     } catch (error) {
       console.error("Unexpected error:", error);
@@ -45,7 +45,8 @@ const mitraVoucher = () => {
   const fetchClientData = async () => {
     setIsLoading(true);
     try {
-      const data = await fetchClients();
+      const response = await fetch("/api/clients");
+      const data = await response.json();
       setClients(data);
     } catch (error) {
       console.error("Gagal memuat data klien:", error);
@@ -57,25 +58,22 @@ const mitraVoucher = () => {
   useEffect(() => {
     fetchClientData();
 
-    // Mengecek status sesi pengguna
-    const checkUser = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) {
-        setUser(null); // Tidak ada sesi
-      } else {
-        setUser(data.session.user); // Ada sesi, simpan data pengguna
+    const checkSession = async () => {
+      try {
+        const response = await fetch("/api/checksession");
+        if (!response.ok) {
+          throw new Error("Session invalid");
+        }
+
+        const data = await response.json();
+        setUser(data.user);
+      } catch (err) {
+        console.error("Failed to fetch user:", err);
+      setUser(null); // Pastikan user null jika gagal
       }
     };
 
-    checkUser();
-
-    const { data: authListener } = supabase.auth.onAuthStateChange(() => {
-      checkUser();
-    });
-
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
+    checkSession();
   }, []);
 
   return (

@@ -9,12 +9,10 @@ import VoucherProduct from "../components/voucherProduct.astro"
 import MitraVoucher from "../components/mitraVoucher"
 import Location from "../components/react/locationAndService"
 import Footer from "../components/footer.astro"
-
-export const prerender = false;
 ---
 
 <Layout Title="Homepage">
-	<Nav client:load />
+	<Nav client:only="react" />
 	<Intro client:visible />
 	<Banner client:visible />
 	<AboutProduct />

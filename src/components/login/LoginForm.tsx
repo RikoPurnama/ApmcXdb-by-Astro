@@ -7,42 +7,40 @@ const LoginForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setErrorMessage(null);
 
-    // Kirim login request ke Supabase
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    setIsLoading(false);
-
-    if (error) {
-      if (error.message.includes("Invalid login credentials")) {
-        setErrorMessage("Email atau kata sandi salah");
-      } else {
-        setErrorMessage("Terjadi kesalahan, silakan coba lagi");
+      if (!response.ok) {
+        const errorData = await response.json();
+        setErrorMessage(errorData.message || "Terjadi kesalahan");
+        setIsLoading(false);
+        return;
       }
-    } else {
-      window.location.href = '/'
+
+      const data = await response.json();
+
+      console.log("Session:", data.session);
+      navigate("/dashboard");
+    } catch (err: any) {
+      setErrorMessage("Terjadi kesalahan, silakan coba lagi");
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    const checkSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (data.session) {
-        navigate("/dashboard"); // Jika sudah login, redirect ke dashboard
-      }
-    };
-    checkSession();
-  }, [navigate]);
 
   return (
     <div className="w-full h-[100vh] px-6 flex flex-col justify-center items-center">
@@ -52,6 +50,7 @@ const LoginForm: React.FC = () => {
       >
         <h1 className="text-xl lg:text-2xl font-bold text-center mb-7">
           Login
+          rikopurnama9051@gmail.com
         </h1>
         <label>
           Email:

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchPromotions } from "../../util/api/apiServices";
 import { supabase } from "../../config/supabaseClient";
 
 const PromotionList = () => {
   const [promotions, setPromotions] = useState<any[]>([]);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<null | any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -14,7 +13,9 @@ const PromotionList = () => {
     const loadPromotions = async () => {
       try {
         setLoading(true);
-        const data = await fetchPromotions();
+        const response = await fetch("/api/promotions");
+        if (!response.ok) throw new Error("Gagal memuat promosi");
+        const data = await response.json();
         if (isMounted) setPromotions(data);
       } catch (err) {
         if (isMounted) setError("Gagal memuat promosi.");
@@ -23,25 +24,27 @@ const PromotionList = () => {
       }
     };
 
-    loadPromotions();
-    const checkUser = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) {
-        setUser(null); // Tidak ada sesi
-      } else {
-        setUser(data.session.user); // Ada sesi, simpan data pengguna
+    const checkSession = async () => {
+      try {
+        const response = await fetch("/api/checksession");
+        if (!response.ok) {
+          throw new Error("Session invalid");
+        }
+
+        const data = await response.json();
+        setUser(data.user);
+      } catch (err) {
+        console.error("Failed to fetch user:", err);
+      setUser(null); // Pastikan user null jika gagal
       }
     };
 
-    checkUser();
+    checkSession();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(() => {
-      checkUser();
-    });
+    loadPromotions();
 
     return () => {
-      authListener.subscription.unsubscribe();
-      isMounted = false; // Mencegah setState jika komponen telah dibongkar
+      isMounted = false;
     };
   }, []);
 
@@ -50,42 +53,24 @@ const PromotionList = () => {
       if (!window.confirm("Apakah Anda yakin ingin menghapus promo ini?"))
         return;
 
-      // Hapus gambar dari Supabase Storage (jika ada)
-      if (imageUrl) {
-        const fileName = imageUrl.split("/").pop(); // Mendapatkan nama file dari URL
-        const { error: storageError } = await supabase.storage
-          .from("promotion images")
-          .remove([fileName!]);
+      const response = await fetch("/api/promotions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ promotionId, imageUrl }),
+      });
 
-        if (storageError) {
-          throw new Error(`Gagal menghapus gambar: ${storageError.message}`);
-        }
+      if (!response.ok) {
+        throw new Error("Gagal menghapus promosi.");
       }
 
-      // Hapus data dari tabel `Promotion`
-      const { error: dbError } = await supabase
-        .from("Promotion")
-        .delete()
-        .eq("id", promotionId);
-
-      if (dbError) {
-        throw new Error(`Gagal menghapus promo: ${dbError.message}`);
-      }
-
-      // Perbarui daftar promosi
       setPromotions((prev) => prev.filter((promo) => promo.id !== promotionId));
     } catch (err: any) {
-      alert(err.message || "Terjadi kesalahan saat menghapus promo.");
+      alert(err.message || "Terjadi kesalahan saat menghapus promosi.");
     }
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="overflow-hidden">

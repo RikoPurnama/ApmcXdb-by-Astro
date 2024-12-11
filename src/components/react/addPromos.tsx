@@ -14,33 +14,41 @@ const AddPromotion: React.FC = () => {
     setMessage("");
 
     try {
-      let imageUrl = null;
+      let imageBase64 = null;
 
-      // Jika ada gambar, unggah ke Supabase Storage
+      // Jika ada gambar, ubah ke base64
       if (image) {
-        const fileName = `${Date.now()}-${image.name}`;
-        const { data: uploadData, error: uploadError } = await supabase.storage
-          .from("promotion images")
-          .upload(fileName, image);
-
-        if (uploadError) {
-          throw new Error(`Gagal mengunggah gambar: ${uploadError.message}`);
-        }
-
-        imageUrl = `${process.env.PUBLIC_SUPABASE_URL}/storage/v1/object/public/promotion images/${uploadData?.path}`;
+        const reader = new FileReader();
+        reader.readAsDataURL(image);
+        const result = await new Promise<string | ArrayBuffer | null>(
+          (resolve) => {
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => resolve(null);
+          }
+        );
+        if (!result) throw new Error("Gagal memproses gambar.");
+        imageBase64 = {
+          name: image.name,
+          type: image.type,
+          data: (result as string).split(",")[1], // Ambil base64 tanpa prefix
+        };
       }
 
-      // Simpan data promosi ke database
-      const { data, error } = await supabase.from("Promotion").insert([
-        {
+      // Kirim data ke API
+      const response = await fetch("/api/promotions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           title,
           description,
-          imageUrl,
-        },
-      ]).select()
+          image: imageBase64,
+        }),
+      });
 
-      if (error) {
-        throw new Error(`Gagal menyimpan data promosi: ${error.message}`);
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Gagal menambahkan promosi.");
       }
 
       setMessage("Promosi berhasil ditambahkan!");
@@ -69,7 +77,9 @@ const AddPromotion: React.FC = () => {
           />
         </div>
         <div>
-          <label className="block font-semibold mb-1">Deskripsi (Opsional)</label>
+          <label className="block font-semibold mb-1">
+            Deskripsi (Opsional)
+          </label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}

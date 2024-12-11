@@ -9,6 +9,12 @@ dotenv.config();
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: {
+      enable: true,
+    },
+    maxDuration: 10,
+    edgeMiddleware: true,
+  }),
   integrations: [tailwind(), react()],
 });

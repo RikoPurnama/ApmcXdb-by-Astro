@@ -1,6 +1,4 @@
-// src/pages/Dashboard.tsx
 import React, { useEffect, useState } from "react";
-import { supabase } from "../config/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
@@ -9,31 +7,31 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Memeriksa sesi pengguna
     const checkSession = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) {
-        console.error("Sesi tidak ditemukan:", error?.message);
+      try {
+        const response = await fetch("/api/checksession");
+        if (!response.ok) {
+          navigate("/login");
+          return;
+        }
+
+        const data = await response.json();
+        setUser(data.user);
+      } catch (err) {
+        console.error("Error checking session:", err);
         navigate("/login");
-      } else {
-        setUser(data.session.user);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false); // Hentikan loading setelah selesai memeriksa
     };
 
     checkSession();
-
-    // Membersihkan listener saat komponen unmount
-    return () => {
-      setUser(null);
-      setIsLoading(false);
-    };
   }, [navigate]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-  };
+    await fetch("/api/auth/logout", { method: "POST" });
+    navigate("/login"); // Redirect ke halaman login
+  };  
 
   if (isLoading) {
     return <p>Loading...</p>;

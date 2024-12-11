@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
-import { supabase } from "../../config/supabaseClient";
 import AddPromotion from "./addPromos";
 import PromotionList from "./PromotionList";
 
@@ -11,25 +10,22 @@ const About = () => {
   const minX = useTransform(scrollYProgress, [0, 1], [0, -500]);
 
   useEffect(() => {
-    // Mengecek status sesi pengguna
-    const checkUser = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (error || !data.session) {
-        setUser(null); // Tidak ada sesi
-      } else {
-        setUser(data.session.user); // Ada sesi, simpan data pengguna
+    const checkSession = async () => {
+      try {
+        const response = await fetch("/api/checksession");
+        if (!response.ok) {
+          throw new Error("Session invalid");
+        }
+
+        const data = await response.json();
+        setUser(data.user);
+      } catch (err) {
+        console.error("Failed to fetch user:", err);
+      setUser(null); // Pastikan user null jika gagal
       }
     };
 
-    checkUser();
-
-    const { data: authListener } = supabase.auth.onAuthStateChange(() => {
-      checkUser();
-    });
-
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
+    checkSession();
   }, []);
 
   return (
